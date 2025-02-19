@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "lib/puma/plugin/stripe/version"
-
 Gem::Specification.new do |spec|
   spec.name = "puma-plugin-stripe"
-  spec.version = Puma::Plugin::Stripe::VERSION
+  spec.version = "1.0.0"
   spec.author = "Zacharias Knudsen"
   spec.email = "z@chari.as"
 
