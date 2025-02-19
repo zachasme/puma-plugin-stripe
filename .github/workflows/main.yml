@@ -23,5 +23,9 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+      - name: Download Stripe CLI
+        run: |
+          curl -L https://github.com/stripe/stripe-cli/releases/download/v1.24.0/stripe_1.24.0_linux_x86_64.tar.gz --output stripe.tar.gz
+          tar -xvf stripe.tar.gz
       - name: Run the default task
         run: bundle exec rake
