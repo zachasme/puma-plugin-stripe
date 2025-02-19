@@ -25,4 +25,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "puma", ">= 3.0"
   spec.add_dependency "stripe"
+
+  spec.add_development_dependency "rubocop-rails-omakase"
 end

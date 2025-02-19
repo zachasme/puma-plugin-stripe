@@ -12,9 +12,9 @@ class Puma::Plugin::TestStripe < Minitest::Test
     @called = false
 
     config = Puma::Configuration.new do |c|
-      c.app do |env|
+      c.app do
         @called = true
-        [200, { "Content-Type" => "text/plain" }, ["Hello, Stripe CLI!"]]
+        [ 200, { "Content-Type" => "text/plain" }, [ "Hello, Stripe CLI!" ] ]
       end
       c.plugin "stripe"
       c.port 9292

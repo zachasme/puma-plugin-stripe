@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 require "stripe"
 require "puma/plugin"
 
 Puma::Plugin.create do
-  attr_reader :launcher
-
   def start(launcher)
     @launcher = launcher
 
@@ -22,17 +22,15 @@ Puma::Plugin.create do
   private
     def stop_stripe
       Process.waitpid(@pid, Process::WNOHANG)
-      launcher.log_writer.log "[Stripe] Stopping..."
+      @launcher.log_writer.log "[Stripe] Stopping..."
       Process.kill(:INT, @pid) if @pid
       Process.wait(@pid)
     rescue Errno::ECHILD, Errno::ESRCH
     end
 
-    DEFAULT_FORWARD_TO = "/stripe_event"
-
     def forward_to
-      path = launcher.options.fetch(:stripe_forward_to, DEFAULT_FORWARD_TO)
-      _, port, host = launcher.binder.ios.first.addr
+      path = @launcher.options.fetch(:stripe_forward_to, "/stripe_events")
+      _, port, host = @launcher.binder.ios.first.addr
       URI::HTTP.build(port:, host:, path:)
     end
 end
