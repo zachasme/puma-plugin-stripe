@@ -1,8 +1,6 @@
 # Puma::Plugin::Stripe
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/puma/plugin/stripe`. To experiment with that code, run `bin/console` for an interactive prompt.
+Forward Stripe webhook events to your web server.
 
 ## Installation
 
@@ -22,7 +20,7 @@ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
 
 ## Usage
 
-TODO: Write usage instructions here
+Add `plugin :stripe` to `puma.rb`.
 
 ## Development
 
@@ -32,7 +30,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/puma-plugin-stripe.
+Bug reports and pull requests are welcome on GitHub at https://github.com/zachasme/puma-plugin-stripe.
 
 ## License
 
