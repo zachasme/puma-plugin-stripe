@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    puma-plugin-stripe (0.1.0)
+    puma-plugin-stripe (1.0.0)
       puma (>= 3.0)
       stripe
 
