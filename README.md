@@ -18,7 +18,11 @@ gem install puma-plugin-stripe
 
 ## Usage
 
+Make sure `Stripe.api_key` is set, e.g. in a Rails initializer.
+
 Add `plugin :stripe` to `puma.rb`.
+
+By default, events will be forwarded to `/stripe_events`, this can be configured using `stripe_forward_to "/stripe/webhook"` in `puma.rb`.
 
 ## Development
 
