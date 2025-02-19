@@ -1,4 +1,4 @@
-# Puma::Plugin::Stripe
+# Stripe Puma Plugin
 
 Forward Stripe webhook events to your web server.
 
