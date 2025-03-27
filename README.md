@@ -7,7 +7,7 @@ Forward Stripe webhook events to your web server.
 Install the [Stripe CLI](https://docs.stripe.com/stripe-cli#install), then install the gem and add to the application's Gemfile by executing:
 
 ```bash
-bundle add puma-plugin-stripe
+bundle add puma-plugin-stripe --group development
 ```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
