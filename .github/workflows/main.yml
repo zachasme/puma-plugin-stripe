@@ -31,4 +31,4 @@ jobs:
       - name: Run the default task
         run: bundle exec rake
         env:
-          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
+          TEST_STRIPE_API_KEY: ${{ secrets.TEST_STRIPE_API_KEY }}
