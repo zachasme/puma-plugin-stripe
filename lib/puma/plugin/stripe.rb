@@ -3,6 +3,16 @@
 require "stripe"
 require "puma/plugin"
 
+module Puma::Plugin::Stripe
+  def self.signing_secret(api_key)
+    secret = `stripe listen --api-key "#{api_key}" --print-secret`.chomp
+    return nil unless $?.success?
+    secret unless secret.empty?
+  rescue
+    nil
+  end
+end
+
 Puma::Plugin.create do
   def start(launcher)
     @launcher = launcher

@@ -18,11 +18,52 @@ gem install puma-plugin-stripe
 
 ## Usage
 
-Make sure `Stripe.api_key` is set, e.g. in a Rails initializer.
+Make sure `Stripe.api_key` is set, e.g. in `config/initializers/stripe.rb`:
 
-Add `plugin :stripe` to `puma.rb`.
+```ruby
+Stripe.api_key = "sk_test_..."
+```
+
+Add `plugin :stripe` to `puma.rb` configuration:
+
+```ruby
+# Run stripe cli only in development.
+plugin :stripe if ENV["RAILS_ENV"] == "development"
+```
 
 By default, events will be forwarded to `/stripe_events`, this can be configured using `stripe_forward_to "/stripe/webhook"` in `puma.rb`.
+
+You can grab your *signing secret* using `Puma::Plugin::Stripe.signing_secret`. For example:
+
+```ruby
+class StripeEventsController < ActionController::API
+  before_action :set_event
+
+  def create
+    case event.type
+    when 'payment_intent.succeeded'
+      payment_intent = event.data.object
+      # ...
+    end
+
+    head :ok
+  end
+
+  private
+
+    def event
+      @event ||= Stripe::Webhook.construct_event(
+        request.body.read,
+        request.headers["stripe-signature"],
+        Puma::Plugin::Stripe.signing_secret(Stripe.api_key)
+      )
+    rescue => error
+      logger.error error
+      head :bad_request
+    end
+end
+
+```
 
 ## Development
 
