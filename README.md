@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> Superceded by [ruby-stripe-cli](https://github.com/zachasme/ruby-stripe-cli)
+
 # Stripe Puma Plugin
 
 Forward Stripe webhook events to your web server.
